@@ -1,9 +1,9 @@
 import { Router } from 'express';
+const { StatusCodes } = require('http-status-codes');
+import controllers from '../controllers/sheets.controllers';
 
 const sheetsRouter = Router();
 
-sheetsRouter.get('/teste', (req, res) => {
-  res.send('teste');
-});
+sheetsRouter.get('/read/rows', controllers.getSheetsRow);
 
 export default sheetsRouter;
