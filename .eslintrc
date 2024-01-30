@@ -4,11 +4,11 @@
     "jest": true
   },
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": [
-      "./tsconfig.json"
-    ]
-  },
+  // "parserOptions": {
+  //   "project": [
+  //     "./tsconfig.json"
+  //   ]
+  // },
   "extends": "airbnb-typescript/base",
   "plugins": [
     "import",
@@ -20,7 +20,7 @@
     "no-param-reassign": 0,
     "no-return-assign": 0,
     "camelcase": 0,
-    "import/extensions": 0,
+    // "import/extensions": 0,
     "@typescript-eslint/no-redeclare": 0
   },
   "settings": {
