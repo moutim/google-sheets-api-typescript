@@ -1,20 +1,21 @@
 import { Request, Response } from 'express';
 import services from '../services/sheets.services';
+import { StatusCodes } from 'http-status-codes';
 
 const getSheetsRow = async (req: Request, res: Response) => {
   const rows = await services.readSheetsRow();
 
-  return res.status(200).json(rows);
+  return res.status(StatusCodes.OK).json(rows);
 };
 
-const calculateAvarage = async (req: Request, res: Response) => {
-  const rows = await services.calculateAvarage();
+const createStudent = async (req: Request, res: Response) => {
+  const rows = await services.createStudent(req.body);
 
-  return res.status(200).json(rows);
+  return res.status(StatusCodes.CREATED).json(rows);
 };
 
 
 export default {
   getSheetsRow,
-  calculateAvarage
+  createStudent
 }

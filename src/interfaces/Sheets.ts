@@ -23,3 +23,11 @@ export interface Student {
   status: string | null;
   finalApprovalScore: number | null;
 }
+
+export interface CreateStudent {
+  name: string;
+  absences: string;
+  test1: string;
+  test2: string;
+  test3: string;
+}

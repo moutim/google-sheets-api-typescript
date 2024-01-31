@@ -1,11 +1,12 @@
 import { Router } from 'express';
 const { StatusCodes } = require('http-status-codes');
 import controllers from '../controllers/sheets.controllers';
+import verifyRegister from '../middlewares/createStudent';
 
 const sheetsRouter = Router();
 
-sheetsRouter.get('/read/rows', controllers.getSheetsRow);
+sheetsRouter.get('/read/students', controllers.getSheetsRow);
 
-sheetsRouter.post('/calculate/avarage', controllers.calculateAvarage);
+sheetsRouter.post('/create/students', verifyRegister, controllers.createStudent);
 
 export default sheetsRouter;

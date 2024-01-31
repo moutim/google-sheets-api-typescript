@@ -1,5 +1,5 @@
 const { google } = require("googleapis");
-import { AuthSheets, SheetsRow, Student } from "../interfaces/Sheets";
+import { AuthSheets, CreateStudent, SheetsRow, Student } from "../interfaces/Sheets";
 
 const getAuthSheets = async (): Promise<AuthSheets> => {
   const auth = new google.auth.GoogleAuth({
@@ -56,21 +56,29 @@ const readSheetsRow = async (): Promise<Student[]> => {
   return students;
 };
 
-// const addSheetsRow = async (values) => {
-//   const { googleSheets, auth, spreadsheetId } = await getAuthSheets();
+const addSheetsRow = async (studentInfo: CreateStudent) => {
+  const { auth, spreadsheetId } = await getAuthSheets();
 
-//   const row = await googleSheets.spreadsheets.values.append({
-//     auth,
-//     spreadsheetId,
-//     range: "Página1",
-//     valueInputOption: "USER_ENTERED",
-//     resource: {
-//       values: values,
-//     },
-//   });
-// };
+  const sheets = google.sheets({ version: 'v4', auth });
+
+  try {
+    const response = await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range: "engenharia_de_software",
+      valueInputOption: "USER_ENTERED",
+      resource: {
+        values: { values: [10, studentInfo.name, studentInfo.absences, studentInfo.test1, studentInfo.test2, studentInfo.test3] }
+      },
+    });
+
+    return { message: 'Student created successfully.' };
+  } catch (error) {
+    return { message: 'Unable to create a new student.' };
+  }
+};
 
 export default {
   readSheetsRow,
-  getAuthSheets
+  getAuthSheets,
+  addSheetsRow
 }
