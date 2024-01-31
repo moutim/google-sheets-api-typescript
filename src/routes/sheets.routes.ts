@@ -6,4 +6,6 @@ const sheetsRouter = Router();
 
 sheetsRouter.get('/read/rows', controllers.getSheetsRow);
 
+sheetsRouter.post('/calculate/avarage', controllers.calculateAvarage);
+
 export default sheetsRouter;

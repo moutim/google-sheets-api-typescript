@@ -1,5 +1,5 @@
 const { google } = require("googleapis");
-import { AuthSheets, SheetsRow } from "../interfaces/Sheets";
+import { AuthSheets, SheetsRow, Student } from "../interfaces/Sheets";
 
 const getAuthSheets = async (): Promise<AuthSheets> => {
   const auth = new google.auth.GoogleAuth({
@@ -24,22 +24,51 @@ const getAuthSheets = async (): Promise<AuthSheets> => {
   };
 };
 
-const readSheetsRow = async (): Promise<SheetsRow | undefined | null> => {
+const readSheetsRow = async (): Promise<Student[]> => {
   const { googleSheets, auth, spreadsheetId } = await getAuthSheets();
 
-  const getRows = await googleSheets.spreadsheets.values.get({
+  const result = await googleSheets.spreadsheets.values.get({
     auth,
     spreadsheetId,
     range: "engenharia_de_software"
   });
 
-  const numRows = getRows.data.values ? getRows.data.values.length : 0;
+  const rows: string[][] | null | undefined = result.data.values;
 
-  return {
-    numRows,
-    rowsValue: getRows.data.values as string[][]
-  };
+  const students: Student[] = [];
+
+  rows?.forEach((item, index) => {
+    if (index > 2) {
+      students.push({
+        id: Number(item[0]),
+        name: item[1],
+        studyArea: rows[0][0],
+        absences: Number(item[2]),
+        test1: Number(item[3]),
+        test2: Number(item[4]),
+        test3: Number(item[5]),
+        status: item[6] || null,
+        finalApprovalScore: Number(item[6]) || null,
+      });
+    }
+  });
+
+  return students;
 };
+
+// const addSheetsRow = async (values) => {
+//   const { googleSheets, auth, spreadsheetId } = await getAuthSheets();
+
+//   const row = await googleSheets.spreadsheets.values.append({
+//     auth,
+//     spreadsheetId,
+//     range: "Página1",
+//     valueInputOption: "USER_ENTERED",
+//     resource: {
+//       values: values,
+//     },
+//   });
+// };
 
 export default {
   readSheetsRow,
