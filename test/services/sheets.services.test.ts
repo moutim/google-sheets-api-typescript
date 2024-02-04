@@ -6,6 +6,10 @@ import models from '../../src/models/sheets.models';
 import { CreateStudent, Student, UpdatedSheets } from '../../src/interfaces/Sheets';
 
 describe('Test functions in service', () => {
+  afterEach(() => {
+    sinon.restore();
+  });
+
   it('readSheetsRow should return an array of students', async () => {
     const expectedStudents: Student[] = [
       {
