@@ -35,12 +35,10 @@ const readSheetsRow = async (): Promise<Student[]> => {
 
   const rows: string[][] | null | undefined = result.data.values;
 
-  console.log(rows);
-
-
   const students: Student[] = [];
 
   rows?.forEach((item, index) => {
+    console.log(item[7]);
     if (index > 2) {
       students.push({
         id: Number(item[0]),
@@ -51,7 +49,7 @@ const readSheetsRow = async (): Promise<Student[]> => {
         test2: Number(item[4]),
         test3: Number(item[5]),
         status: item[6] || null,
-        finalApprovalScore: Number(item[6]) || null,
+        finalApprovalScore: Number(item[7]) >= 0 ? Number(item[7]) : null,
       });
     }
   });
