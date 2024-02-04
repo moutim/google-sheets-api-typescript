@@ -11,7 +11,10 @@ const swaggerConfig = {
       { url: 'http://localhost:3001/', description: 'Development environment' },
     ],
   },
-  apis: [path.resolve(__dirname, '../routes/sheets.routes.ts')],
+  apis: [
+    path.resolve(__dirname, '../routes/sheets.routes.ts'),
+    path.resolve(__dirname, '../routes/sheets.routes.js')
+  ],
 };
 
 module.exports = swaggerConfig;
