@@ -1,59 +1,68 @@
-# Express API Starter with Typescript
+# Google Sheets API - Manipulação de Planilhas 📊🔧
 
-How to use this template:
+Este projeto proporciona a manipulação eficiente de planilhas do Google por meio da Google Sheets API. Focado na gestão de dados de estudantes, oferece funcionalidades cruciais para buscar informações, adicionar novos estudantes e calcular médias com base nos dados fornecidos.
 
-```sh
-npx create-express-api --typescript --directory my-api-name
-```
+## Funcionalidades da API 🚀
 
-Includes API Server utilities:
+### 1. Dados dos Estudantes (Endpoint: `/read/students`)
+   - Recupera informações dos estudantes inseridos na planilha.
 
-* [morgan](https://www.npmjs.com/package/morgan)
-  * HTTP request logger middleware for node.js
-* [helmet](https://www.npmjs.com/package/helmet)
-  * Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
-* [dotenv](https://www.npmjs.com/package/dotenv)
-  * Dotenv is a zero-dependency module that loads environment variables from a `.env` file into `process.env`
-* [cors](https://www.npmjs.com/package/cors)
-  * CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+   Exemplo de resposta:
+   ```json
+   {
+       "id": 1,
+       "name": "Eduardo",
+       "studyArea": "Engenharia de Software",
+       "absences": 8,
+       "test1": 35,
+       "test2": 63,
+       "test3": 61,
+       "status": "Exame Final",
+       "finalApprovalScore": 18
+   }
+   ```
 
-Development utilities:
+### 2. Adição de Novos Estudantes (Endpoint: `/create/students`)
+   - Permite a inclusão de novos registros na planilha e atualiza instantaneamente.
 
-* [typescript](https://www.npmjs.com/package/typescript)
-  * TypeScript is a language for application-scale JavaScript.
-* [ts-node](https://www.npmjs.com/package/ts-node)
-  * TypeScript execution and REPL for node.js, with source map and native ESM support.
-* [nodemon](https://www.npmjs.com/package/nodemon)
-  * nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
-* [eslint](https://www.npmjs.com/package/eslint)
-  * ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
-* [typescript-eslint](https://typescript-eslint.io/)
-  * Tooling which enables ESLint to support TypeScript.
-* [jest](https://www.npmjs.com/package/jest)
-  * Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
-* [supertest](https://www.npmjs.com/package/supertest)
-  * HTTP assertions made easy via superagent.
+   Exemplo de resposta:
+   ```json
+   {
+       "message": "Student created successfully."
+   }
+   ```
 
-## Setup
+### 3. Cálculo de Média e Situação (Endpoint: `/calculate/average`)
+   - Realiza o cálculo automático da média e determina a situação de cada estudante com base nos dados da planilha.
 
-```
-npm install
-```
+   Exemplo de resposta:
+   ```json
+   {
+       "message": "Grade average updated successfully!"
+   }
+   ```
 
-## Lint
+## Tecnologias Utilizadas 🛠️
 
-```
-npm run lint
-```
+- **TypeScript:** Linguagem de programação para desenvolvimento seguro e escalável.
+- **Express:** Framework web para construir aplicativos robustos e escaláveis.
+- **Swagger:** Facilita a documentação da API e interação com seus endpoints.
+- **Mocha, Chai e Sinon:** Conjunto de ferramentas para testes unitários e mocks.
+- **Google APIs:** Integração com a API do Google Sheets para manipulação eficiente de planilhas.
 
-## Test
+## Testes na Camada de Service ⚙️
 
-```
+Os testes foram adicionados na camada de serviço (Service) da API para garantir a correta execução das regras de negócio.
+
+```bash
 npm run test
 ```
 
-## Development
+ ## Rodando localmente
+  Requisitos:
+  * Possuir Node.JS instalado;
 
-```
+```bash
 npm run dev
 ```
+Acesse a API localmente em [http://localhost:5000/documentation](http://localhost:5000) após executar o comando acima.
