@@ -31,3 +31,7 @@ export interface CreateStudent {
   test2: string;
   test3: string;
 }
+
+export interface UpdatedSheets {
+  message: string;
+}

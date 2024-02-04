@@ -1,5 +1,5 @@
 const { google } = require("googleapis");
-import { AuthSheets, CreateStudent, SheetsRow, Student } from "../interfaces/Sheets";
+import { AuthSheets, CreateStudent, SheetsRow, Student, UpdatedSheets } from "../interfaces/Sheets";
 
 const getAuthSheets = async (): Promise<AuthSheets> => {
   const auth = new google.auth.GoogleAuth({
@@ -35,6 +35,9 @@ const readSheetsRow = async (): Promise<Student[]> => {
 
   const rows: string[][] | null | undefined = result.data.values;
 
+  console.log(rows);
+
+
   const students: Student[] = [];
 
   rows?.forEach((item, index) => {
@@ -56,10 +59,12 @@ const readSheetsRow = async (): Promise<Student[]> => {
   return students;
 };
 
-const addSheetsRow = async (studentInfo: CreateStudent) => {
+const addSheetsRow = async (studentInfo: CreateStudent): Promise<UpdatedSheets> => {
   const { auth, spreadsheetId } = await getAuthSheets();
 
   const sheets = google.sheets({ version: 'v4', auth });
+
+  const arrStudents = await readSheetsRow();
 
   try {
     const response = await sheets.spreadsheets.values.append({
@@ -67,7 +72,7 @@ const addSheetsRow = async (studentInfo: CreateStudent) => {
       range: "engenharia_de_software",
       valueInputOption: "USER_ENTERED",
       resource: {
-        values: { values: [10, studentInfo.name, studentInfo.absences, studentInfo.test1, studentInfo.test2, studentInfo.test3] }
+        values: { values: [arrStudents.length, studentInfo.name, studentInfo.absences, studentInfo.test1, studentInfo.test2, studentInfo.test3] }
       },
     });
 
@@ -77,8 +82,30 @@ const addSheetsRow = async (studentInfo: CreateStudent) => {
   }
 };
 
+const calculateAvarage = async (avarageCalculated: String[][] | undefined | null): Promise<UpdatedSheets> => {
+  const { auth, spreadsheetId } = await getAuthSheets();
+
+  const sheets = google.sheets({ version: 'v4', auth });
+
+  try {
+    await sheets.spreadsheets.values.update({
+      spreadsheetId,
+      range: "engenharia_de_software",
+      valueInputOption: "USER_ENTERED",
+      resource: {
+        values: avarageCalculated
+      },
+    });
+
+    return { message: 'Grade average updated successfully!' };
+  } catch (error) {
+    return { message: 'Unable to update avarage grade.' };
+  }
+};
+
 export default {
   readSheetsRow,
   getAuthSheets,
-  addSheetsRow
+  addSheetsRow,
+  calculateAvarage
 }

@@ -9,4 +9,6 @@ sheetsRouter.get('/read/students', controllers.getSheetsRow);
 
 sheetsRouter.post('/create/students', verifyRegister, controllers.createStudent);
 
+sheetsRouter.put('/calculate/avarage', controllers.calculateAvarage);
+
 export default sheetsRouter;
