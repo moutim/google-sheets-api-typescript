@@ -2,6 +2,18 @@
 
 Este projeto proporciona a manipulação eficiente de planilhas do Google por meio da Google Sheets API. Focado na gestão de dados de estudantes, oferece funcionalidades cruciais para buscar informações, adicionar novos estudantes e calcular médias com base nos dados fornecidos.
 
+## Documentação e deploy
+
+O deploy da aplicação foi feita no Render (geralmente o servidor leva 1-2 minutos pra ligar).
+
+Acesse a planilha e faça uma requisição na documentação para ver os dados sendo inseridos em tempo real!
+[Link da planilha](https://docs.google.com/spreadsheets/d/1FNNI45t6LVj7AMTtqXBHEYhh85fA69J4SO-PmrA40pc/edit#gid=0)
+
+A documentação dessa API foi feita por meio do Swagger. 
+[Documentação completa](https://google-sheets-api-4cr8.onrender.com/documentation/)
+
+![image](https://github.com/moutim/case-psel-tunts-rocks/assets/88093439/a254beb8-6331-40d9-b691-92ff59c94669)
+
 ## Funcionalidades da API 🚀
 
 ### 1. Dados dos Estudantes (Endpoint: `/read/students`)
