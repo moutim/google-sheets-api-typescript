@@ -4,12 +4,13 @@
   "description": " A basic starter for an express.js API with Typescript",
   "main": "src/index.ts",
   "scripts": {
-    "start": "npx tsc && node ./dist/src/index.js",
+    "start": "ts-node ./src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "lint": "eslint --fix src test",
     "test": "mocha --require ts-node/register test/**/*.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "vercel-build": "echo hello"
   },
   "keywords": [],
   "author": "Vitor Moutim",
