@@ -80,7 +80,7 @@ const addSheetsRow = async (studentInfo: CreateStudent): Promise<UpdatedSheets> 
   }
 };
 
-const calculateAvarage = async (avarageCalculated: String[][] | undefined | null): Promise<UpdatedSheets> => {
+const calculateAverage = async (avarageCalculated: String[][] | undefined | null): Promise<UpdatedSheets> => {
   const { auth, spreadsheetId } = await getAuthSheets();
 
   const sheets = google.sheets({ version: 'v4', auth });
@@ -105,5 +105,5 @@ export default {
   readSheetsRow,
   getAuthSheets,
   addSheetsRow,
-  calculateAvarage
+  calculateAverage
 }

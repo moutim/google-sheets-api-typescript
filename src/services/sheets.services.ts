@@ -20,7 +20,7 @@ const verifyStatus = (absences: number, avarage: number): string => {
   return 'Aprovado'
 };
 
-const calculateAvarage = async (): Promise<UpdatedSheets> => {
+const calculateAverage = async (): Promise<UpdatedSheets> => {
   const { googleSheets, auth, spreadsheetId } = await models.getAuthSheets();
 
   const data = await googleSheets.spreadsheets.values.get({
@@ -58,7 +58,7 @@ const calculateAvarage = async (): Promise<UpdatedSheets> => {
     }
   });
 
-  const result = await models.calculateAvarage(rows);
+  const result = await models.calculateAverage(rows);
 
   return result;
 };
@@ -66,5 +66,6 @@ const calculateAvarage = async (): Promise<UpdatedSheets> => {
 export default {
   readSheetsRow,
   createStudent,
-  calculateAvarage
+  calculateAverage,
+  verifyStatus
 };

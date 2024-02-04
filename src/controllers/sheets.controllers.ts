@@ -14,8 +14,8 @@ const createStudent = async (req: Request, res: Response) => {
   return res.status(StatusCodes.CREATED).json(rows);
 };
 
-const calculateAvarage = async (req: Request, res: Response) => {
-  const rows = await services.calculateAvarage();
+const calculateAverage = async (req: Request, res: Response) => {
+  const rows = await services.calculateAverage();
 
   return res.status(StatusCodes.OK).json(rows);
 };
@@ -24,5 +24,5 @@ const calculateAvarage = async (req: Request, res: Response) => {
 export default {
   getSheetsRow,
   createStudent,
-  calculateAvarage
+  calculateAverage
 }
