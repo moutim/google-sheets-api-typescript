@@ -27,7 +27,9 @@
     "googleapis": "^131.0.0",
     "http-status-codes": "^2.3.0",
     "joi": "^17.12.1",
-    "sinon": "^17.0.1"
+    "sinon": "^17.0.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
