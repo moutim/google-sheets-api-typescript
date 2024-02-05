@@ -8,7 +8,8 @@ const swaggerConfig = {
       version: '1.0',
     },
     servers: [
-      { url: 'http://localhost:3001/', description: 'Development environment' },
+      { url: 'https://google-sheets-api-4cr8.onrender.com/', description: 'Production environment' },
+      { url: 'http://localhost:5000/', description: 'Development environment' },
     ],
   },
   apis: [
