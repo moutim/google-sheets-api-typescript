@@ -38,7 +38,6 @@ const readSheetsRow = async (): Promise<Student[]> => {
   const students: Student[] = [];
 
   rows?.forEach((item, index) => {
-    console.log(item[7]);
     if (index > 2) {
       students.push({
         id: Number(item[0]),
