@@ -69,7 +69,7 @@ const addSheetsRow = async (studentInfo: CreateStudent): Promise<UpdatedSheets> 
       range: "engenharia_de_software",
       valueInputOption: "USER_ENTERED",
       resource: {
-        values: { values: [arrStudents.length, studentInfo.name, studentInfo.absences, studentInfo.test1, studentInfo.test2, studentInfo.test3] }
+        values: { values: [arrStudents.length + 1, studentInfo.name, studentInfo.absences, studentInfo.test1, studentInfo.test2, studentInfo.test3] }
       },
     });
 
